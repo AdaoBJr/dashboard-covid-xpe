@@ -6,7 +6,7 @@ export const useCovidApi = () => {
   const { URL_BASE } = getEnv();
 
   const getSummary = async () => {
-    const res = await api.get<GetSummary>(URL_BASE);
+    const res = await api.get<GetSummary>(`${URL_BASE}summary`);
     return res.data;
   };
 

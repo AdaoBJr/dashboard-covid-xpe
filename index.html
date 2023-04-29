@@ -13,13 +13,17 @@
       class="fixed top-0 left-0 flex gap-x-10 justify-start items-center p-5 w-full h-15 bg-grey-A200 shadow-0"
     >
       <img src="./src/assets/icons/logo.svg" width="40px" style="stroke: white" />
+      <a href="index.html">
+        <p class="text-common-white font-bold">Home</p>
+      </a>
       <a href="daily-info.html">
         <p class="text-common-white font-bold">País</p>
       </a>
-      <p class="text-common-white font-bold">Top 5</p>
     </header>
-    <main class="p-5 mt-24 mb">
+    <main id="main" class="p-5 mt-24 mb">
       <h1 class="text-center font-bold text-xl mb-8">Dashboard - Covid-19</h1>
+      <!-- LOADING -->
+      <div id="loading" class="absolute top-1/2 left-1/2"></div>
 
       <div
         id="container"
