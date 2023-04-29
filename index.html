@@ -27,10 +27,13 @@
 
       <div
         id="container"
-        class="flex flex-col gap-x-10 justify-center items-center p-5 w-full bg-background-paper rounded"
+        class="flex flex-col gap-y-20 justify-center items-center p-5 w-full bg-background-paper rounded"
       >
         <!-- PARTE SUPERIOR -->
-        <div id="top" class="flex w-full">
+        <div
+          id="top"
+          class="flex xs:flex-col sm:flex-row justify-center items-center w-full"
+        >
           <div id="kpis" class="flex flex-col items-center justify-center gap-y-5 w-full">
             <div
               id="confirmed"
@@ -58,11 +61,11 @@
             <canvas id="chart_pie"></canvas>
           </div>
         </div>
-      </div>
 
-      <!-- PARTE INFERIOR -->
-      <div class="w-full">
-        <canvas id="chart_bar" width="400" height="400"></canvas>
+        <!-- PARTE INFERIOR -->
+        <div class="w-full">
+          <canvas id="chart_bar" width="400" height="400"></canvas>
+        </div>
       </div>
     </main>
     <script type="module" src="/scripts.ts"></script>

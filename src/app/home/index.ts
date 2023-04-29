@@ -17,12 +17,12 @@ const { getSummary } = useCovidApi();
 
   //Fazendo requisição a api
   const covidData = await getSummary();
-  console.log({ covidData });
 
   //Removendo loading com o retorno da api
   if (Object.values(covidData).length > 0) {
     loadingAnimation({ isFetching: false, querySelector: '#loading' });
     createPieChart(covidData.Global);
+    createBarChart(covidData.Countries);
   }
 
   //Adicionando dados globais da covid aos KPI's
@@ -31,7 +31,11 @@ const { getSummary } = useCovidApi();
   totalRecovered.innerText = covidData.Global.TotalRecovered.toLocaleString();
 
   //Gráficos
-  function createPieChart(data: GetSummary['Global']) {
+  function createPieChart({
+    NewConfirmed,
+    NewDeaths,
+    NewRecovered,
+  }: GetSummary['Global']) {
     const ctx = document.querySelector<HTMLCanvasElement>('#chart_pie')!;
 
     new Chart(ctx, {
@@ -40,7 +44,7 @@ const { getSummary } = useCovidApi();
         labels: ['Confirmados', 'Mortes', 'Recuperados'],
         datasets: [
           {
-            data: [data.NewConfirmed, data.NewDeaths, data.NewRecovered],
+            data: [NewConfirmed, NewDeaths, NewRecovered],
             backgroundColor: [
               'rgba(75, 192, 192, 0.5)',
               'rgba(255, 99, 132, 0.5)',
@@ -54,6 +58,57 @@ const { getSummary } = useCovidApi();
             borderWidth: 1,
           },
         ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Distribuição de Novos Casos',
+            font: {
+              size: 16,
+            },
+          },
+        },
+      },
+    });
+  }
+
+  function createBarChart(Countries: GetSummary['Countries']) {
+    const ctx = document.querySelector<HTMLCanvasElement>('#chart_bar')!;
+    const top10CountriesDeaths = Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
+    const labels = top10CountriesDeaths.map(({ Country }) => Country).slice(0, 10);
+    const data = top10CountriesDeaths.map(({ TotalDeaths }) => TotalDeaths).slice(0, 10);
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [
+          {
+            data,
+            label: 'Total Mortes',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Top 10 Países por Morte',
+            font: {
+              size: 16,
+            },
+          },
+        },
       },
     });
   }
