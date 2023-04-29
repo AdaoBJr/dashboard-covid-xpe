@@ -1,0 +1,86 @@
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./src/assets/icons/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./tailwind.css" rel="stylesheet" />
+
+    <title>Informações Diárias</title>
+  </head>
+  <body class="bg-background-default">
+    <header
+      class="fixed top-0 left-0 flex gap-x-10 justify-start items-center p-5 w-full h-15 bg-grey-A200 shadow-0"
+    >
+      <img src="./src/assets/icons/logo.svg" width="40px" style="stroke: white" />
+      <a href="index.html">
+        <p class="text-common-white font-bold">Home</p>
+      </a>
+      <a href="daily-info.html">
+        <p class="text-common-white font-bold">País</p>
+      </a>
+    </header>
+    <main class="p-5 mt-24 mb">
+      <h1 class="text-center font-bold text-xl mb-8">Números Diários - Covid-19</h1>
+      <!-- LOADING -->
+      <div id="loading" class="absolute top-1/2 left-1/2"></div>
+
+      <div
+        id="container"
+        class="flex xs:flex-col sm:flex-row gap-x-10 justify-center items-center p-5 w-full bg-background-paper rounded"
+      >
+        <!-- FILTROS -->
+        <div
+          id="filtros"
+          class="flex flex-col gap-y-5 justify-center items-center w-full"
+        >
+          <label class="flex flex-col gap-y-2 font-bold">
+            Data Inicial:
+            <input
+              type="date"
+              id="initial_date"
+              name="initial_date"
+              class="border-[1px] border-grey-500 outline-none p-1 rounded font-normal w-56"
+            />
+          </label>
+          <label class="flex flex-col gap-y-2 font-bold">
+            Data Final:
+            <input
+              type="date"
+              id="final_date"
+              name="final_date"
+              class="border-[1px] border-grey-500 outline-none p-1 rounded font-normal w-56"
+            />
+          </label>
+          <label class="flex flex-col gap-y-2 font-bold">
+            País:
+            <select
+              id="select_country"
+              name="select_country"
+              class="border-[1px] border-grey-500 outline-none p-1 rounded font-normal w-56"
+            ></select>
+          </label>
+          <label class="flex flex-col gap-y-2 font-bold">
+            Dados:
+            <select
+              id="select_data"
+              name="select_data"
+              class="border-[1px] border-grey-500 outline-none p-1 rounded font-normal w-56"
+            ></select>
+          </label>
+          <button
+            id="btnFilter"
+            class="text-common-white hover:text-common-black bg-primary-dark font-bold rounded-lg text-sm px-9 py-2.5 outline-none"
+          >
+            Aplicar
+          </button>
+        </div>
+
+        <!-- GRÁFICO -->
+        <div class="w-full">
+          <canvas id="chart_line" width="400" height="400"></canvas>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="/src/app/daily-info/index.ts"></script>
+  </body>
+</html>
