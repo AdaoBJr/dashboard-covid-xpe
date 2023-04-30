@@ -19,25 +19,24 @@
         <p class="text-common-white font-bold">País</p>
       </a>
     </header>
-    <main class="p-5 mt-24 mb">
-      <h1 class="text-center font-bold text-xl mb-8">Números Diários - Covid-19</h1>
+    <main class="flex flex-col justify-center items-center gap-y-8 p-5 mt-24">
+      <h1 class="text-center font-bold text-xl">Números Diários - Covid-19</h1>
       <!-- LOADING -->
       <div id="loading" class="absolute top-1/2 left-1/2"></div>
 
       <div
         id="container"
-        class="flex xs:flex-col sm:flex-row gap-x-10 justify-center items-center p-5 w-full bg-background-paper rounded"
+        class="flex xs:flex-col sm:flex-row gap-x-10 justify-center items-center p-5 w-[1000px] bg-background-paper rounded"
       >
         <!-- FILTROS -->
         <div
           id="filtros"
-          class="flex flex-col gap-y-5 justify-center items-center w-full"
+          class="flex flex-col gap-y-5 justify-center items-center w-[500px]"
         >
           <label class="flex flex-col gap-y-2 font-bold">
             Data Inicial:
             <input
               type="date"
-              value="2021-01-01"
               id="initial_date"
               name="initial_date"
               class="border-[1px] border-grey-500 outline-none p-1 rounded font-normal w-56"
@@ -47,7 +46,6 @@
             Data Final:
             <input
               type="date"
-              value="2021-01-05"
               id="final_date"
               name="final_date"
               class="border-[1px] border-grey-500 outline-none p-1 rounded font-normal w-56"
@@ -86,36 +84,15 @@
         </div>
 
         <!-- DADOS -->
-        <div id="data_info">
+        <div id="data_info" class="w-full">
           <!-- GRÁFICO -->
-          <div class="w-full">
-            <canvas id="chart_line" width="300" height="300"></canvas>
-          </div>
+          <div class="w-full" id="div_chart_line"></div>
 
           <!-- KPIS -->
-          <div id="kpis" class="flex items-center justify-center gap-x-5 w-full my-12">
-            <div
-              id="confirmed"
-              class="bg-primary-light px-4 py-3 text-center w-[200px] rounded"
-            >
-              <h5 class="font-bold">Total de Confirmados</h5>
-              <p id="total_confirmed"></p>
-            </div>
-            <div
-              id="deaths"
-              class="bg-primary-light px-4 py-3 text-center w-[200px] rounded"
-            >
-              <h5 class="font-bold">Total de Mortes</h5>
-              <p id="total_deaths"></p>
-            </div>
-            <div
-              id="recovered"
-              class="bg-primary-light px-4 py-3 text-center w-[200px] rounded"
-            >
-              <h5 class="font-bold">Total de Recuperados</h5>
-              <p id="total_recovered"></p>
-            </div>
-          </div>
+          <div
+            id="daily_kpis"
+            class="flex items-center justify-center gap-x-5 w-full my-12"
+          ></div>
         </div>
       </div>
     </main>

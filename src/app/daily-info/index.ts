@@ -13,16 +13,27 @@ const { getCountries, getCountryByStatus, getCountryByAllStatus } = useCovidApi(
   const selectCountries = document.querySelector<HTMLSelectElement>('#select_country')!;
   const selectStatus = document.querySelector<HTMLSelectElement>('#select_status')!;
   const btnApply = document.querySelector<HTMLButtonElement>('#btnApply')!;
-  const totalConfirmed =
-    document.querySelector<HTMLParagraphElement>('#total_confirmed')!;
-  const totalDeaths = document.querySelector<HTMLParagraphElement>('#total_deaths')!;
-  const totalRecovered =
-    document.querySelector<HTMLParagraphElement>('#total_recovered')!;
+  const divChartLine = document.querySelector<HTMLDivElement>('#div_chart_line')!;
+  const divKPIs = document.querySelector<HTMLDivElement>('#daily_kpis')!;
+
   let chart: Chart | null = null;
 
   //Iniciando com Loading
   loadingAnimation({ isFetching: true, querySelector: '#loading' });
   const countries = await getCountries();
+  divKPIs.innerHTML = `
+    <div
+      id="initial_img"
+      class="flex flex-col items-center justify-center w-full gap-y-5"
+    >
+      <img
+        src="./src/assets/icons/search.svg"
+        width="200px"
+        alt="lupa de busca"
+      />
+      <p class="font-bold">Preencha os campos ao lado para filtrar.</p>
+    </div>
+  `;
 
   //Removendo loading com o retorno da api
   if (Object.values(countries).length > 0) {
@@ -86,6 +97,14 @@ const { getCountries, getCountryByStatus, getCountryByAllStatus } = useCovidApi(
     dataAllStatus: GetCountryByAllStatus[];
     dataByStatus: GetCountryByStatus[];
   }) {
+    divChartLine.innerHTML = '';
+    const divContainer = document.querySelector<HTMLDivElement>('#container')!;
+    divContainer.classList.remove('w-[1000px]');
+    divContainer.classList.add('w-full');
+
+    const canvasChartLine = document.createElement('canvas');
+    canvasChartLine.id = 'chart_line';
+    divChartLine.appendChild(canvasChartLine);
     const ctx = document.querySelector<HTMLCanvasElement>('#chart_line')!;
 
     //Processando os dados dos KPI's
@@ -123,10 +142,30 @@ const { getCountries, getCountryByStatus, getCountryByAllStatus } = useCovidApi(
       return acc;
     }, initialValue);
 
-    //Adicionando dados da covid aos KPI's
-    totalConfirmed.innerText = totalCasesByStatus.confirmed.toLocaleString();
-    totalDeaths.innerText = totalCasesByStatus.deaths.toLocaleString();
-    totalRecovered.innerText = totalCasesByStatus.recovered.toLocaleString();
+    //Renderizando KPI's na tela
+    divKPIs.innerHTML = `
+      <div
+        id="confirmed"
+        class="bg-primary-light px-4 py-3 text-center w-[200px] rounded"
+      >
+        <h5 class="font-bold">Total de Confirmados</h5>
+        <p id="total_confirmed">${totalCasesByStatus.confirmed.toLocaleString()}</p>
+      </div>
+      <div
+        id="deaths"
+        class="bg-primary-light px-4 py-3 text-center w-[200px] rounded"
+      >
+        <h5 class="font-bold">Total de Mortes</h5>
+        <p id="total_deaths">${totalCasesByStatus.deaths.toLocaleString()}</p>
+      </div>
+      <div
+        id="recovered"
+        class="bg-primary-light px-4 py-3 text-center w-[200px] rounded"
+      >
+        <h5 class="font-bold">Total de Recuperados</h5>
+        <p id="total_recovered">${totalCasesByStatus.recovered.toLocaleString()}</p>
+      </div>
+    `;
 
     //Processando os dados para renderizar o gráfico
     const chartData = dataByStatus.map(({ Date, Cases }) => ({
@@ -148,7 +187,6 @@ const { getCountries, getCountryByStatus, getCountryByAllStatus } = useCovidApi(
       (acc, curr, _, array) => Math.round(acc + curr.cases / array.length),
       0
     );
-    console.log({ dailyData });
 
     const label = `${
       selectStatus.value.charAt(0).toUpperCase() + selectStatus.value.slice(1)
