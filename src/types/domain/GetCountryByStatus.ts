@@ -1,5 +1,4 @@
-export interface GetCountryByAllStatus {
-  ID: string;
+export interface GetCountryByStatus {
   Country: string;
   CountryCode: string;
   Province: string;
@@ -7,9 +6,7 @@ export interface GetCountryByAllStatus {
   CityCode: string;
   Lat: string;
   Lon: string;
-  Confirmed: number;
-  Deaths: number;
-  Recovered: number;
-  Active: number;
+  Cases: number;
+  Status: string;
   Date: string;
 }
