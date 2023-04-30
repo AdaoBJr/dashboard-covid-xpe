@@ -7,8 +7,8 @@
     
 
     <title>Dashboard Covid - Xpe</title>
-    <script type="module" crossorigin src="/dashboard-covid-xpe/assets/index-d4404e3e.js"></script>
-    <link rel="stylesheet" href="/dashboard-covid-xpe/assets/index-d99a08eb.css">
+    <script type="module" crossorigin src="/dashboard-covid-xpe/assets/index-7bad6d7c.js"></script>
+    <link rel="stylesheet" href="/dashboard-covid-xpe/assets/index-8051d28b.css">
   </head>
   <body class="bg-background-default">
     <header
@@ -22,21 +22,21 @@
         <p class="text-common-white font-bold">País</p>
       </a>
     </header>
-    <main id="main" class="p-5 mt-24 mb">
-      <h1 class="text-center font-bold text-xl mb-8">Dashboard - Covid-19</h1>
+    <main id="main" class="flex flex-col justify-center items-center gap-y-8 p-5 mt-24">
+      <h1 class="text-center font-bold text-xl">Dashboard - Covid-19</h1>
       <!-- LOADING -->
       <div id="loading" class="absolute top-1/2 left-1/2"></div>
 
       <div
         id="container"
-        class="flex flex-col gap-y-20 justify-center items-center p-5 w-full bg-background-paper rounded"
+        class="flex flex-col gap-y-20 justify-center items-center p-5 bg-background-paper xs:w-full sm:w-[1000px] rounded"
       >
         <!-- PARTE SUPERIOR -->
         <div
           id="top"
-          class="flex xs:flex-col sm:flex-row justify-center items-center w-full"
+          class="flex xs:flex-col sm:flex-row justify-center items-center w-full xs:gap-y-6 sm:gap-x-6"
         >
-          <div id="kpis" class="flex flex-col items-center justify-center gap-y-5 w-full">
+          <div id="kpis" class="flex flex-col items-center justify-center gap-y-5">
             <div
               id="confirmed"
               class="bg-primary-light px-4 py-3 text-center w-[180px] rounded"
@@ -59,14 +59,14 @@
               <p id="total_recovered"></p>
             </div>
           </div>
-          <div class="w-full">
+          <div class="w-[600px]">
             <canvas id="chart_pie"></canvas>
           </div>
         </div>
 
         <!-- PARTE INFERIOR -->
-        <div class="w-full">
-          <canvas id="chart_bar" width="400" height="400"></canvas>
+        <div class="w-[800px] h-[500px]">
+          <canvas id="chart_bar"></canvas>
         </div>
       </div>
     </main>
