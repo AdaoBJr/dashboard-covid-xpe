@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/dashboard-covid-xpe/assets/logo-86ce6af2.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+
+    <title>Dashboard Covid - Xpe</title>
+    <script type="module" crossorigin src="/dashboard-covid-xpe/assets/index-d4404e3e.js"></script>
+    <link rel="stylesheet" href="/dashboard-covid-xpe/assets/index-d99a08eb.css">
+  </head>
+  <body class="bg-background-default">
+    <header
+      class="fixed top-0 left-0 flex gap-x-10 justify-start items-center p-5 w-full h-15 bg-grey-A200 shadow-0"
+    >
+      <img src="/dashboard-covid-xpe/assets/logo-86ce6af2.svg" width="40px" style="stroke: white" />
+      <a href="index.html">
+        <p class="text-common-white font-bold">Home</p>
+      </a>
+      <a href="daily-info.html">
+        <p class="text-common-white font-bold">País</p>
+      </a>
+    </header>
+    <main id="main" class="p-5 mt-24 mb">
+      <h1 class="text-center font-bold text-xl mb-8">Dashboard - Covid-19</h1>
+      <!-- LOADING -->
+      <div id="loading" class="absolute top-1/2 left-1/2"></div>
+
+      <div
+        id="container"
+        class="flex flex-col gap-y-20 justify-center items-center p-5 w-full bg-background-paper rounded"
+      >
+        <!-- PARTE SUPERIOR -->
+        <div
+          id="top"
+          class="flex xs:flex-col sm:flex-row justify-center items-center w-full"
+        >
+          <div id="kpis" class="flex flex-col items-center justify-center gap-y-5 w-full">
+            <div
+              id="confirmed"
+              class="bg-primary-light px-4 py-3 text-center w-[180px] rounded"
+            >
+              <h5 class="font-bold">Total Confirmados</h5>
+              <p id="total_confirmed"></p>
+            </div>
+            <div
+              id="deaths"
+              class="bg-primary-light px-4 py-3 text-center w-[180px] rounded"
+            >
+              <h5 class="font-bold">Total Mortes</h5>
+              <p id="total_deaths"></p>
+            </div>
+            <div
+              id="recovered"
+              class="bg-primary-light px-4 py-3 text-center w-[180px] rounded"
+            >
+              <h5 class="font-bold">Total Recuperados</h5>
+              <p id="total_recovered"></p>
+            </div>
+          </div>
+          <div class="w-full">
+            <canvas id="chart_pie"></canvas>
+          </div>
+        </div>
+
+        <!-- PARTE INFERIOR -->
+        <div class="w-full">
+          <canvas id="chart_bar" width="400" height="400"></canvas>
+        </div>
+      </div>
+    </main>
+    
+  </body>
+</html>
