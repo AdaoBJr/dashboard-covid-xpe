@@ -1,12 +1,17 @@
 import { api } from '../api';
 import { getEnv } from '../../../environment';
-import { GetCountryByAllStatus, GetSummary } from '../../../types';
+import { GetCountries, GetCountryByAllStatus, GetSummary } from '../../../types';
 
 export const useCovidApi = () => {
   const { URL_BASE } = getEnv();
 
   const getSummary = async () => {
     const res = await api.get<GetSummary>(`${URL_BASE}summary`);
+    return res.data;
+  };
+
+  const getCountries = async () => {
+    const res = await api.get<GetCountries[]>(`${URL_BASE}countries`);
     return res.data;
   };
 
@@ -25,5 +30,5 @@ export const useCovidApi = () => {
     return res.data;
   };
 
-  return { getSummary, getCountryByAllStatus };
+  return { getSummary, getCountries, getCountryByAllStatus };
 };
