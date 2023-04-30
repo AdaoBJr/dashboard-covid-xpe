@@ -37,6 +37,7 @@
             Data Inicial:
             <input
               type="date"
+              value="2021-01-01"
               id="initial_date"
               name="initial_date"
               class="border-[1px] border-grey-500 outline-none p-1 rounded font-normal w-56"
@@ -46,6 +47,7 @@
             Data Final:
             <input
               type="date"
+              value="2021-01-05"
               id="final_date"
               name="final_date"
               class="border-[1px] border-grey-500 outline-none p-1 rounded font-normal w-56"
@@ -56,28 +58,64 @@
             <select
               id="select_country"
               name="select_country"
-              class="border-[1px] border-grey-500 outline-none p-1 rounded font-normal w-56"
-            ></select>
+              class="border-[1px] border-grey-500 outline-none p-1 rounded font-normal w-56 cursor-pointer"
+            >
+              <option value="Brazil">Brazil</option>
+              <option value="Selecione">Selecione</option>
+            </select>
           </label>
           <label class="flex flex-col gap-y-2 font-bold">
-            Dados:
+            Status:
             <select
-              id="select_data"
-              name="select_data"
-              class="border-[1px] border-grey-500 outline-none p-1 rounded font-normal w-56"
-            ></select>
+              id="select_status"
+              name="select_status"
+              class="border-[1px] border-grey-500 outline-none p-1 rounded font-normal w-56 cursor-pointer"
+            >
+              <option value="deaths">Mortes</option>
+              <option value="Selecione">Selecione</option>
+              <option value="confirmed">Confirmados</option>
+              <option value="recovered">Recuperados</option>
+            </select>
           </label>
           <button
-            id="btnFilter"
+            id="btnApply"
             class="text-common-white hover:text-common-black bg-primary-dark font-bold rounded-lg text-sm px-9 py-2.5 outline-none"
           >
             Aplicar
           </button>
         </div>
 
-        <!-- GRÁFICO -->
-        <div class="w-full">
-          <canvas id="chart_line" width="400" height="400"></canvas>
+        <!-- DADOS -->
+        <div id="data_info">
+          <!-- GRÁFICO -->
+          <div class="w-full">
+            <canvas id="chart_line" width="300" height="300"></canvas>
+          </div>
+
+          <!-- KPIS -->
+          <div id="kpis" class="flex items-center justify-center gap-x-5 w-full my-12">
+            <div
+              id="confirmed"
+              class="bg-primary-light px-4 py-3 text-center w-[200px] rounded"
+            >
+              <h5 class="font-bold">Total de Confirmados</h5>
+              <p id="total_confirmed"></p>
+            </div>
+            <div
+              id="deaths"
+              class="bg-primary-light px-4 py-3 text-center w-[200px] rounded"
+            >
+              <h5 class="font-bold">Total de Mortes</h5>
+              <p id="total_deaths"></p>
+            </div>
+            <div
+              id="recovered"
+              class="bg-primary-light px-4 py-3 text-center w-[200px] rounded"
+            >
+              <h5 class="font-bold">Total de Recuperados</h5>
+              <p id="total_recovered"></p>
+            </div>
+          </div>
         </div>
       </div>
     </main>

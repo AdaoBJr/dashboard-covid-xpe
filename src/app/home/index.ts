@@ -5,7 +5,6 @@ import { GetSummary } from '../../types';
 const { getSummary } = useCovidApi();
 
 (async () => {
-  // const container = document.querySelector<HTMLDivElement>('#container')!;
   const totalConfirmed =
     document.querySelector<HTMLParagraphElement>('#total_confirmed')!;
   const totalDeaths = document.querySelector<HTMLParagraphElement>('#total_deaths')!;
