@@ -184,7 +184,7 @@ const { getCountries, getCountryByStatus, getCountryByAllStatus } = useCovidApi(
     dailyData.shift();
 
     const averageCases = dailyData.reduce(
-      (acc, curr, _, array) => Math.round(acc + curr.cases / array.length),
+      (acc, curr, _, array) => acc + curr.cases / array.length,
       0
     );
 
